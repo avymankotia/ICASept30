@@ -1,15 +1,15 @@
 public class ShiftArray {
 
-    // A method to shift all the items of "arr" to the right 
-	// by "shift" number of places (with wraparound).
-	// Example: {3, 4, 5, 6} with a shift of 1 becomes {6, 3, 4, 5} 
-	public static void shiftBy(int[] arr, int shift) {
+    
+	public static int[] shiftBy(int[] arr, int shift) {
 
-		// If shift is larger than the array, this expression
-		// finds an equivalent shift amount. If shift is less
-		// than the size of the array, this expression leaves
-		// shift unchanged:
+		System.out.println("Original array: " + java.util.Arrays.toString(arr));
+		System.out.println("Shift amount: " + shift);
+
+		
 		shift = shift % arr.length;
+		System.out.println("Normalized shift amount: " + shift);
+
 
 		int[] newArray = new int[arr.length];
 
@@ -18,7 +18,13 @@ public class ShiftArray {
 			newArray[index] = arr[i];
 		}
 
+       
+        System.out.println("New array before array before assignment: " + java.util.Arrays.toString(newArray));
+
+
 		arr = newArray;
+		System.out.println("Finished shifting. Original array reference still points to:" + java.util.Arrays.toString(arr));
+		return arr;
 	}
 
 
@@ -26,11 +32,11 @@ public class ShiftArray {
 		try{
 			int[] a = {3, 4, 5, 6};
 			int shiftAmount = Integer.valueOf(args[0]);
-			if(shiftAmount < 0){
+			if (shiftAmount < 0){
 				System.out.println("Sorry, shift about must be positive.");
 				return;
 			}
-			shiftBy(a, shiftAmount);
+			a = shiftBy(a, shiftAmount);
 			for(int i : a){
 				System.out.print(i + " ");
 			}
